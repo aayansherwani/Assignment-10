@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zauq Studio — Interior Design, Lahore</title>
+<meta name="description" content="Zauq Studio designs residential, commercial and hospitality interiors across Lahore, Karachi and Islamabad — rooted in local craft, built for the way you live.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFE6D6;
+    --paper-deep:#E6DAC4;
+    --ink:#241C18;
+    --ink-soft:#5A4F45;
+    --indigo:#1B3A54;
+    --indigo-deep:#122A3D;
+    --gold:#B98430;
+    --gold-soft:#D9B876;
+    --rose:#8B2E28;
+    --line: rgba(36,28,24,0.14);
+    --line-strong: rgba(36,28,24,0.28);
+    --radius: 2px;
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:450; letter-spacing:-0.01em;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--rose);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--rose);display:inline-block;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+  section{position:relative;}
+  :focus-visible{outline:2px solid var(--indigo); outline-offset:3px;}
+
+  /* ---------- Jaali signature pattern ---------- */
+  .jaali-divider{
+    height:64px;
+    width:100%;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23241C18' stroke-opacity='0.18' stroke-width='1.1'%3E%3Cpath d='M32 2 L62 32 L32 62 L2 32 Z'/%3E%3Ccircle cx='32' cy='32' r='13'/%3E%3Cpath d='M32 19 L45 32 L32 45 L19 32 Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat:repeat-x;
+    background-size:64px 64px;
+    background-position:center;
+    opacity:.85;
+  }
+  .jaali-bg{
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23EFE6D6' stroke-opacity='0.10' stroke-width='1'%3E%3Cpath d='M60 4 L116 60 L60 116 L4 60 Z'/%3E%3Ccircle cx='60' cy='60' r='24'/%3E%3Cpath d='M60 32 L88 60 L60 88 L32 60 Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size:120px 120px;
+    pointer-events:none;
+  }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:22px 0;
+    transition:background .4s var(--ease), padding .4s var(--ease), border-color .4s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(239,230,214,0.92);
+    backdrop-filter:blur(10px);
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .logo{
+    font-family:'Fraunces',serif; font-size:22px; font-weight:600; letter-spacing:.01em;
+    display:flex; align-items:baseline; gap:6px;
+  }
+  .logo em{font-style:italic; font-weight:450; color:var(--rose);}
+  nav.primary{display:flex; gap:34px;}
+  nav.primary a{
+    font-size:14px; font-weight:500; position:relative; padding:4px 0;
+  }
+  nav.primary a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--ink);
+    transition:width .3s var(--ease);
+  }
+  nav.primary a:hover::after{width:100%;}
+  .nav-cta{
+    font-size:13px; font-weight:600; letter-spacing:.02em;
+    background:var(--indigo); color:var(--paper);
+    padding:11px 22px; border-radius:var(--radius);
+    transition:background .3s var(--ease), transform .3s var(--ease);
+  }
+  .nav-cta:hover{background:var(--indigo-deep); transform:translateY(-1px);}
+  .nav-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px;}
+  .nav-toggle span{width:22px; height:2px; background:var(--ink);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    position:relative; overflow:hidden;
+    padding-top:120px;
+  }
+  .hero-slides{position:absolute; inset:0; z-index:0;}
+  .hero-slides img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    opacity:0; animation:heroFade 20s infinite;
+    filter:saturate(.85) brightness(.55) sepia(.08);
+  }
+  .hero-slides img:nth-child(1){animation-delay:0s;}
+  .hero-slides img:nth-child(2){animation-delay:5s;}
+  .hero-slides img:nth-child(3){animation-delay:10s;}
+  .hero-slides img:nth-child(4){animation-delay:15s;}
+  @keyframes heroFade{
+    0%{opacity:0;} 4%{opacity:1;} 22%{opacity:1;} 27%{opacity:0;} 100%{opacity:0;}
+  }
+  .hero::before{
+    content:''; position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(18,42,61,.35) 0%, rgba(18,42,61,.15) 40%, rgba(18,42,61,.75) 100%);
+  }
+  .hero-content{position:relative; z-index:2; color:var(--paper); padding-bottom:64px;}
+  .hero-badge{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    border:1px solid rgba(239,230,214,.4); padding:7px 14px; border-radius:100px; margin-bottom:26px;
+  }
+  .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold-soft);}
+  .hero h1{
+    font-size:clamp(38px, 6.4vw, 88px);
+    line-height:1.02;
+    max-width:15ch;
+    margin-bottom:26px;
+  }
+  .hero h1 em{font-style:italic; color:var(--gold-soft); font-weight:450;}
+  .hero p.lede{max-width:46ch; font-size:17px; color:rgba(239,230,214,.86); margin-bottom:38px;}
+  .hero-tags{display:flex; gap:28px; flex-wrap:wrap; margin-bottom:44px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.04em;}
+  .hero-tags span{color:rgba(239,230,214,.65);}
+  .hero-tags strong{color:var(--paper); font-weight:500;}
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:14px; font-weight:600; padding:15px 28px; border-radius:var(--radius);
+    transition:all .3s var(--ease); border:1px solid transparent; cursor:pointer;
+  }
+  .btn-primary{background:var(--gold); color:var(--ink);}
+  .btn-primary:hover{background:var(--gold-soft); transform:translateY(-2px);}
+  .btn-ghost{border-color:rgba(239,230,214,.5); color:var(--paper);}
+  .btn-ghost:hover{border-color:var(--paper); background:rgba(239,230,214,.08);}
+  .btn-dark{background:var(--indigo); color:var(--paper);}
+  .btn-dark:hover{background:var(--indigo-deep);}
+
+  /* ---------- Stats bar ---------- */
+  .stats{
+    background:var(--indigo); color:var(--paper); position:relative; overflow:hidden;
+  }
+  .stats .wrap{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    position:relative; z-index:1;
+  }
+  .stat{padding:46px 20px; text-align:center; border-left:1px solid rgba(239,230,214,.16);}
+  .stat:first-child{border-left:none;}
+  .stat .num{font-family:'Fraunces',serif; font-size:clamp(30px,3.6vw,44px); font-weight:500; color:var(--gold-soft);}
+  .stat .lbl{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; margin-top:8px; color:rgba(239,230,214,.7);}
+
+  /* ---------- Section heading pattern ---------- */
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head .eyebrow{margin-bottom:16px;}
+  .section-head h2{font-size:clamp(30px,3.4vw,46px); margin-bottom:16px;}
+  .section-head p{color:var(--ink-soft); font-size:16px; max-width:52ch;}
+  .section-pad{padding:110px 0;}
+
+  /* ---------- Services ---------- */
+  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-strong); border:1px solid var(--line-strong);}
+  .service-card{background:var(--paper); padding:44px 36px; transition:background .35s var(--ease);}
+  .service-card:hover{background:var(--paper-deep);}
+  .service-num{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--rose); margin-bottom:20px;}
+  .service-card h3{font-size:21px; margin-bottom:12px; font-weight:450;}
+  .service-card p{color:var(--ink-soft); font-size:14.5px; margin-bottom:20px;}
+  .service-link{font-size:13px; font-weight:600; display:inline-flex; align-items:center; gap:6px; border-bottom:1px solid var(--ink);}
+
+  /* ---------- Portfolio ---------- */
+  .portfolio-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:56px;}
+  .portfolio-grid{display:grid; grid-template-columns:repeat(3, 1fr); grid-auto-rows:260px; gap:18px;}
+  .p-item{position:relative; overflow:hidden; border-radius:var(--radius); cursor:pointer;}
+  .p-item.tall{grid-row:span 2;}
+  .p-item img{width:100%; height:100%; object-fit:cover; transition:transform .7s var(--ease);}
+  .p-item:hover img{transform:scale(1.06);}
+  .p-overlay{
+    position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:22px;
+    background:linear-gradient(180deg, transparent 40%, rgba(18,20,20,.82) 100%);
+    color:var(--paper);
+  }
+  .p-overlay .cat{font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:6px;}
+  .p-overlay h3{font-size:19px; font-weight:450;}
+
+  /* ---------- Process ---------- */
+  .process-list{display:grid; grid-template-columns:repeat(4,1fr); gap:0; border-top:1px solid var(--line-strong);}
+  .process-item{padding:38px 26px 38px 0; border-right:1px solid var(--line-strong);}
+  .process-item:last-child{border-right:none;}
+  .process-item .pnum{font-family:'Fraunces',serif; font-style:italic; font-size:15px; color:var(--rose); margin-bottom:18px;}
+  .process-item h3{font-size:19px; margin-bottom:10px; font-weight:450;}
+  .process-item p{font-size:14px; color:var(--ink-soft);}
+
+  /* ---------- Testimonials ---------- */
+  .testi-wrap{background:var(--ink); color:var(--paper); position:relative;}
+  .testi-track{display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:1px; scrollbar-width:none;}
+  .testi-track::-webkit-scrollbar{display:none;}
+  .testi-card{
+    scroll-snap-align:start; flex:0 0 auto; width:min(560px,88vw); padding:52px 44px;
+    border-right:1px solid rgba(239,230,214,.12);
+  }
+  .testi-card blockquote{font-family:'Fraunces',serif; font-style:italic; font-size:21px; line-height:1.45; margin-bottom:28px; font-weight:400;}
+  .testi-name{font-weight:600; font-size:14.5px;}
+  .testi-role{font-size:13px; color:rgba(239,230,214,.55); font-family:'JetBrains Mono',monospace;}
+  .testi-nav{display:flex; gap:10px; margin-top:36px;}
+  .testi-nav button{width:36px;height:36px; border-radius:50%; border:1px solid rgba(239,230,214,.3); background:none; color:var(--paper); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .25s;}
+  .testi-nav button:hover{background:rgba(239,230,214,.1);}
+
+  /* ---------- Awards ---------- */
+  .awards-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:34px 40px;}
+  .award{padding-top:22px; border-top:1px solid var(--line-strong);}
+  .award h3{font-size:18px; margin-bottom:8px; font-weight:450;}
+  .award .org{font-size:13.5px; color:var(--ink-soft);}
+  .award .yr{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--rose); margin-top:6px; display:block;}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{border-top:1px solid var(--line-strong); max-width:820px;}
+  .faq-item{border-bottom:1px solid var(--line-strong);}
+  .faq-q{
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    padding:26px 4px; display:flex; justify-content:space-between; align-items:center; gap:20px;
+    font-family:'Fraunces',serif; font-size:18px; color:var(--ink);
+  }
+  .faq-q .plus{font-size:20px; font-weight:300; transition:transform .3s var(--ease); flex:0 0 auto; color:var(--rose);}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .4s var(--ease);}
+  .faq-a p{padding:0 4px 26px; color:var(--ink-soft); font-size:14.5px; max-width:68ch;}
+
+  /* ---------- Contact ---------- */
+  .contact-section{background:var(--indigo); color:var(--paper); position:relative; overflow:hidden;}
+  .contact-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:70px; position:relative; z-index:1;}
+  .contact-section .section-head p{color:rgba(239,230,214,.72);}
+  .contact-section .eyebrow{color:var(--gold-soft);}
+  .contact-section .eyebrow::before{background:var(--gold-soft);}
+  form.contact-form{display:grid; gap:18px;}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .field label{display:block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px; color:rgba(239,230,214,.6);}
+  .field input, .field select, .field textarea{
+    width:100%; background:rgba(239,230,214,.06); border:1px solid rgba(239,230,214,.25); color:var(--paper);
+    padding:13px 14px; font-family:'Work Sans',sans-serif; font-size:14.5px; border-radius:var(--radius);
+  }
+  .field select option{color:var(--ink);}
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--gold-soft); outline:none;}
+  .field textarea{resize:vertical; min-height:110px;}
+  .contact-info{padding-top:6px;}
+  .info-block{margin-bottom:32px;}
+  .info-block h3{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:10px;}
+  .info-block p, .info-block a{font-size:15.5px; color:var(--paper);}
+  .form-note{font-size:12px; color:rgba(239,230,214,.5); margin-top:-4px;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:80px 0 30px; border-top:1px solid var(--line-strong);}
+  .footer-top{display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:50px; margin-bottom:64px;}
+  .footer-brand p{color:var(--ink-soft); font-size:14px; margin:18px 0 22px; max-width:34ch;}
+  .footer-col h4{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:18px; color:var(--rose);}
+  .footer-col ul{list-style:none; display:grid; gap:11px;}
+  .footer-col a{font-size:14px; color:var(--ink-soft);}
+  .footer-col a:hover{color:var(--ink);}
+  .footer-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:26px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-soft); flex-wrap:wrap; gap:12px;}
+
+  /* ---------- Cookie bar ---------- */
+  .cookie-bar{
+    position:fixed; bottom:20px; left:20px; right:20px; z-index:200;
+    max-width:640px; margin:0 auto;
+    background:var(--ink); color:var(--paper);
+    padding:20px 24px; border-radius:6px;
+    display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+    box-shadow:0 20px 50px rgba(0,0,0,.3);
+    transform:translateY(140%); transition:transform .6s var(--ease);
+  }
+  .cookie-bar.show{transform:translateY(0);}
+  .cookie-bar p{font-size:13px; flex:1; min-width:200px; color:rgba(239,230,214,.85);}
+  .cookie-actions{display:flex; gap:10px;}
+  .cookie-actions button{
+    font-size:12.5px; font-weight:600; padding:9px 16px; border-radius:4px; cursor:pointer; border:1px solid rgba(239,230,214,.3);
+    background:none; color:var(--paper);
+  }
+  .cookie-actions button.accept{background:var(--gold); color:var(--ink); border-color:var(--gold);}
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    nav.primary, .nav-cta{display:none;}
+    .nav-toggle{display:flex;}
+    .services-grid{grid-template-columns:1fr 1fr;}
+    .portfolio-grid{grid-template-columns:1fr 1fr; grid-auto-rows:220px;}
+    .process-list{grid-template-columns:1fr 1fr;}
+    .process-item{border-right:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong); padding:32px 22px;}
+    .awards-grid{grid-template-columns:1fr 1fr;}
+    .contact-grid{grid-template-columns:1fr; gap:50px;}
+    .footer-top{grid-template-columns:1fr 1fr; gap:36px;}
+    .stats .wrap{grid-template-columns:1fr 1fr;}
+    .stat:nth-child(3){border-left:none;}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 20px;}
+    .services-grid{grid-template-columns:1fr;}
+    .portfolio-grid{grid-template-columns:1fr; grid-auto-rows:280px;}
+    .p-item.tall{grid-row:span 1;}
+    .process-list{grid-template-columns:1fr;}
+    .process-item{border-right:none;}
+    .awards-grid{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .stats .wrap{grid-template-columns:1fr 1fr;}
+    .portfolio-head{flex-direction:column; align-items:flex-start;}
+    .hero h1{max-width:none;}
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="wrap">
+    <a href="#" class="logo">Zauq <em>Studio</em></a>
+    <nav class="primary">
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#process">Process</a>
+      <a href="#awards">Recognition</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="nav-cta">Book a Consultation</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-slides">
+    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&h=1080&fit=crop&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=1080&fit=crop&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1920&h=1080&fit=crop&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&h=1080&fit=crop&q=80" alt="">
+  </div>
+  <div class="wrap hero-content">
+    <div class="hero-badge"><span class="dot"></span> Lahore · Karachi · Islamabad</div>
+    <h1>Interiors carried by <em>zauq</em>, built for how you live</h1>
+    <p class="lede">A design studio shaping homes, offices and hospitality spaces around Pakistani craft, light and material — nothing borrowed, everything considered.</p>
+    <div class="hero-tags">
+      <span><strong>52+</strong> projects</span>
+      <span><strong>11</strong> years</span>
+      <span><strong>3</strong> cities studio presence</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+      <a href="#portfolio" class="btn btn-ghost">View Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="jaali-bg"></div>
+  <div class="wrap">
+    <div class="stat"><div class="num">52+</div><div class="lbl">Projects delivered</div></div>
+    <div class="stat"><div class="num">11+</div><div class="lbl">Years in practice</div></div>
+    <div class="stat"><div class="num">9</div><div class="lbl">Design honours</div></div>
+    <div class="stat"><div class="num">98%</div><div class="lbl">Clients who return</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section-pad" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">What We Do</div>
+      <h2>Design, grounded in local craft</h2>
+      <p>From a single sitting room to a full hospitality build-out, every brief runs through the same discipline — proportion first, then material, then story.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Residential Design</h3>
+        <p>Homes planned around how your family actually moves through a day — from the baithak to the last bedroom.</p>
+        <a href="#contact" class="service-link">Enquire →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Commercial &amp; Retail</h3>
+        <p>Offices and storefronts that carry your brand in the material and light, not just the signage out front.</p>
+        <a href="#contact" class="service-link">Enquire →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>Hospitality Design</h3>
+        <p>Restaurants, guest houses and boutique stays designed for the first ninety seconds a guest remembers.</p>
+        <a href="#contact" class="service-link">Enquire →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>Material &amp; Colour Consulting</h3>
+        <p>Palettes built around what's actually available here — Chiniot wood, Multani blue tile, Thari textiles, local marble.</p>
+        <a href="#contact" class="service-link">Enquire →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <h3>Space Planning</h3>
+        <p>Layouts that respect load-bearing reality and monsoon light, before they chase a mood board.</p>
+        <a href="#contact" class="service-link">Enquire →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <h3>Renovation Management</h3>
+        <p>Full site supervision — contractors, karigars and suppliers coordinated so nothing stalls at the finishing stage.</p>
+        <a href="#contact" class="service-link">Enquire →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="jaali-divider"></div>
+
+<!-- PORTFOLIO -->
+<section class="section-pad" id="portfolio">
+  <div class="wrap">
+    <div class="portfolio-head reveal">
+      <div class="section-head" style="margin-bottom:0;">
+        <div class="eyebrow">Selected Work</div>
+        <h2>Recent projects</h2>
+      </div>
+      <a href="#contact" class="btn btn-dark">View Full Portfolio</a>
+    </div>
+    <div class="portfolio-grid reveal">
+      <div class="p-item tall">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=1000&fit=crop" alt="Living room in a Gulberg residence">
+        <div class="p-overlay"><div class="cat">Residential</div><h3>Gulberg Residence</h3></div>
+      </div>
+      <div class="p-item">
+        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=600&fit=crop" alt="Office fit-out">
+        <div class="p-overlay"><div class="cat">Commercial</div><h3>Blue Area Office Fit-Out</h3></div>
+      </div>
+      <div class="p-item">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop" alt="Residence in Clifton">
+        <div class="p-overlay"><div class="cat">Residential</div><h3>Clifton Residence</h3></div>
+      </div>
+      <div class="p-item">
+        <img src="https://images.unsplash.com/photo-1590490360182-c33d955f4e24?w=800&h=600&fit=crop" alt="Boutique hotel suite">
+        <div class="p-overlay"><div class="cat">Hospitality</div><h3>Nishat Boutique Suite</h3></div>
+      </div>
+      <div class="p-item tall">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=1000&fit=crop" alt="Gallery loft in Lahore">
+        <div class="p-overlay"><div class="cat">Commercial</div><h3>Anarkali Gallery Loft</h3></div>
+      </div>
+      <div class="p-item">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=600&fit=crop" alt="DHA loft renovation">
+        <div class="p-overlay"><div class="cat">Residential</div><h3>DHA Phase 6 Loft</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section-pad" id="process" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">How We Work</div>
+      <h2>Four steps, one thread</h2>
+      <p>A collaborative sequence from first conversation to final reveal — nothing skipped, nothing rushed at the finish.</p>
+    </div>
+    <div class="process-list reveal">
+      <div class="process-item">
+        <div class="pnum">i.</div>
+        <h3>Consult</h3>
+        <p>We walk the site, hear how you actually live or work, and set the brief before a single sketch happens.</p>
+      </div>
+      <div class="process-item">
+        <div class="pnum">ii.</div>
+        <h3>Design</h3>
+        <p>Layouts, material boards and 3D views, built around what's genuinely sourceable here — no imported placeholders.</p>
+      </div>
+      <div class="process-item">
+        <div class="pnum">iii.</div>
+        <h3>Refine</h3>
+        <p>Two structured review rounds where we adjust for budget, light and how the space will actually be used.</p>
+      </div>
+      <div class="process-item">
+        <div class="pnum">iv.</div>
+        <h3>Execute</h3>
+        <p>On-site supervision through to the last coat and the last cushion, coordinated with your contractor directly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-wrap section-pad">
+  <div class="wrap reveal">
+    <div class="section-head" style="margin-bottom:44px;">
+      <div class="eyebrow" style="color:var(--gold-soft);">Client Stories</div>
+      <h2 style="color:var(--paper);">What clients say</h2>
+    </div>
+  </div>
+  <div class="testi-track" id="testiTrack">
+    <div class="testi-card">
+      <blockquote>"Zauq turned our Gulberg house into something that finally feels like us — the jharoka screens in the stairwell are what every guest asks about."</blockquote>
+      <div class="testi-name">Ayesha Raza</div>
+      <div class="testi-role">Homeowner, Lahore</div>
+    </div>
+    <div class="testi-card">
+      <blockquote>"They redesigned our Blue Area office without a single day of downtime for the team. Client meetings actually happen in that lobby now."</blockquote>
+      <div class="testi-name">Bilal Farooqi</div>
+      <div class="testi-role">Director, Meridian Textiles</div>
+    </div>
+    <div class="testi-card">
+      <blockquote>"Every material in our Clifton flat was sourced within Pakistan, and it still reads like a five-star project. That was exactly the brief."</blockquote>
+      <div class="testi-name">Sana Malik</div>
+      <div class="testi-role">Homeowner, Karachi</div>
+    </div>
+    <div class="testi-card">
+      <blockquote>"Our guest house occupancy went up the season after the redesign. Guests specifically mention the courtyard now."</blockquote>
+      <div class="testi-name">Omar Sheikh</div>
+      <div class="testi-role">Owner, Nishat Boutique Stays</div>
+    </div>
+    <div class="testi-card">
+      <blockquote>"I was nervous about touching a fifty-year-old house. They kept its bones and made every room work for how we live today."</blockquote>
+      <div class="testi-name">Nida Chaudhry</div>
+      <div class="testi-role">Homeowner, Islamabad</div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="testi-nav">
+      <button id="testiPrev" aria-label="Previous">←</button>
+      <button id="testiNext" aria-label="Next">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="section-pad" id="awards">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Recognition</div>
+      <h2>Awards &amp; accolades</h2>
+    </div>
+    <div class="awards-grid reveal">
+      <div class="award"><h3>Best Residential Interior</h3><div class="org">South Asian Design Prize</div><span class="yr">2025</span></div>
+      <div class="award"><h3>Hospitality Design Honour</h3><div class="org">Domus Pakistan Awards</div><span class="yr">2025</span></div>
+      <div class="award"><h3>Innovation in Commercial Space</h3><div class="org">Lahore Design Council</div><span class="yr">2024</span></div>
+      <div class="award"><h3>Emerging Studio of the Year</h3><div class="org">Herald Design Review</div><span class="yr">2023</span></div>
+      <div class="award"><h3>Craft &amp; Material Excellence</h3><div class="org">Karachi Biennale Circle</div><span class="yr">2023</span></div>
+      <div class="award"><h3>Top Studios to Watch</h3><div class="org">Living Pakistan Journal</div><span class="yr">2022</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="jaali-divider"></div>
+
+<!-- FAQ -->
+<section class="section-pad" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">FAQ</div>
+      <h2>Common questions</h2>
+    </div>
+    <div class="faq-list reveal" id="faqList">
+      <div class="faq-item open">
+        <button class="faq-q"><span>What's the typical timeline for a home project?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Most residential projects run 3 to 6 months from first consultation to final styling, depending on scope. A single room refresh can take 5 to 7 weeks; a full renovation usually needs 4 to 6 months. You'll get a firm timeline in the proposal.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>How is pricing structured?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>We quote by project scope rather than an hourly rate, so the investment is clear upfront. After the first consultation you'll receive a written proposal in PKR covering design fees, procurement and site supervision.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Do you take projects outside Lahore?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes — we run remote design for clients in Karachi, Islamabad and beyond using 3D walkthroughs and video reviews, with site visits scheduled at key milestones for larger builds.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>What styles do you design in?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Our signature is contemporary work grounded in local material and craft, but the studio also designs classic, minimalist and transitional interiors depending on the site and the client's own taste.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Can you work within our existing budget?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. We're upfront about cost from the first meeting and build the scope around what you've set aside, with supplier relationships across several price tiers.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section section-pad" id="contact">
+  <div class="jaali-bg"></div>
+  <div class="wrap contact-grid">
+    <div>
+      <div class="section-head">
+        <div class="eyebrow">Get in Touch</div>
+        <h2>Start your project</h2>
+        <p>Tell us about the space and where you are — we'll follow up within one working day to schedule a consultation.</p>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault(); this.reset(); document.getElementById('formMsg').style.display='block';">
+        <div class="form-row">
+          <div class="field"><label for="fname">Full name</label><input id="fname" type="text" required></div>
+          <div class="field"><label for="fphone">Phone</label><input id="fphone" type="tel" placeholder="+92 3xx xxxxxxx" required></div>
+        </div>
+        <div class="field"><label for="femail">Email</label><input id="femail" type="email" required></div>
+        <div class="field">
+          <label for="fservice">Service</label>
+          <select id="fservice">
+            <option>Residential Design</option>
+            <option>Commercial &amp; Retail</option>
+            <option>Hospitality Design</option>
+            <option>Colour &amp; Material Consulting</option>
+            <option>Space Planning</option>
+            <option>Renovation Management</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field"><label for="fmsg">Message</label><textarea id="fmsg" placeholder="Tell us about the space, the city, and your rough timeline."></textarea></div>
+        <button type="submit" class="btn btn-primary" style="justify-self:start;">Send Message</button>
+        <p class="form-note" id="formMsg" style="display:none; color:var(--gold-soft);">Thank you — we'll be in touch within one working day.</p>
+      </form>
+    </div>
+    <div class="contact-info">
+      <div class="info-block">
+        <h3>Phone</h3>
+        <p><a href="tel:+923001234567">+92 300 1234567</a></p>
+      </div>
+      <div class="info-block">
+        <h3>Email</h3>
+        <p><a href="mailto:hello@zauqstudio.pk">hello@zauqstudio.pk</a></p>
+      </div>
+      <div class="info-block">
+        <h3>Studio</h3>
+        <p>12-C Main Boulevard, DHA Phase 6<br>Lahore, Pakistan</p>
+      </div>
+      <div class="info-block">
+        <h3>Studio Hours</h3>
+        <p>Mon – Sat, 10:00 AM – 7:00 PM<br>Friday: 10:00 AM – 12:30 PM, reopens 2:30 PM<br>Sunday: Closed</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">Zauq <em>Studio</em></div>
+        <p>An interior design studio in Lahore shaping residential, commercial and hospitality spaces across Pakistan.</p>
+        <p style="font-size:13.5px;">+92 300 1234567 · hello@zauqstudio.pk</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Residential Design</a></li>
+          <li><a href="#services">Commercial &amp; Retail</a></li>
+          <li><a href="#services">Hospitality Design</a></li>
+          <li><a href="#services">Renovation Management</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#awards">Recognition</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Careers</a></li>
+          <li><a href="#contact">Press</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Zauq Studio. All rights reserved.</span>
+      <span>Lahore · Karachi · Islamabad</span>
+    </div>
+  </div>
+</footer>
+
+<div class="cookie-bar" id="cookieBar">
+  <p>We use cookies to improve your experience on this site. By continuing to browse you agree to our use of cookies.</p>
+  <div class="cookie-actions">
+    <button id="cookieDecline">Decline</button>
+    <button class="accept" id="cookieAccept">Accept All</button>
+  </div>
+</div>
+
+<script>
+  // header scroll state
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // mobile nav toggle -> reuse primary nav as dropdown
+  const navToggle = document.getElementById('navToggle');
+  const primaryNav = document.querySelector('nav.primary');
+  navToggle.addEventListener('click', () => {
+    const open = primaryNav.style.display === 'flex';
+    primaryNav.style.display = open ? 'none' : 'flex';
+    primaryNav.style.cssText += open ? '' : 'position:fixed;top:64px;left:0;right:0;background:var(--paper);flex-direction:column;padding:24px 32px;gap:18px;border-bottom:1px solid var(--line-strong);';
+  });
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    if (item.classList.contains('open')) a.style.maxHeight = a.scrollHeight + 'px';
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = null; });
+      if (!isOpen) { item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    });
+  });
+
+  // testimonial nav
+  const track = document.getElementById('testiTrack');
+  const cardWidth = () => track.querySelector('.testi-card').offsetWidth + 1;
+  document.getElementById('testiNext').addEventListener('click', () => track.scrollBy({ left: cardWidth(), behavior: 'smooth' }));
+  document.getElementById('testiPrev').addEventListener('click', () => track.scrollBy({ left: -cardWidth(), behavior: 'smooth' }));
+
+  // cookie bar
+  const cookieBar = document.getElementById('cookieBar');
+  setTimeout(() => cookieBar.classList.add('show'), 1200);
+  const dismissCookie = () => cookieBar.classList.remove('show');
+  document.getElementById('cookieAccept').addEventListener('click', dismissCookie);
+  document.getElementById('cookieDecline').addEventListener('click', dismissCookie);
+</script>
+
+</body>
+</html>
